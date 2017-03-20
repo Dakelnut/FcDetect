@@ -22,19 +22,10 @@ import time
 
 #Используем cv2 для чтения
 
-name_of_image = "4.jpg"
+
 size = 21, 21
 k=0
-# def AdaBoost(mas, size):
-#     global k
-#     k = k + 1
-#     if size[0]>27 :
-#         return False
-#     else:
-#         if k % 100 == 0 :
-#             return True
-#         else:
-#             return False
+
 
 
 class Frame:
@@ -120,10 +111,9 @@ class Frame:
                     our_frame = [our_frame[k][j-distance_from_centre : j + distance_from_centre + 1] for k in range(len(our_frame))]
 
                     answer =  AdaBoost_test_01.AdaBoost('n',our_frame).ans
-                    #print(answer)
+
                     if answer == True:
-                        #print(i,j)
-                        #self.print_copy()
+
                         for m in range(i - distance_from_centre, i + distance_from_centre + 1):
                             for n in range(j - distance_from_centre, j + distance_from_centre + 1):
                                 self.copy_of_image[m][n] = 1
@@ -143,7 +133,7 @@ class Frame:
 
     def checking_condition(self,i,j,distance_from_centre):
 
-        #print(i,j,"---",distance_from_centre)
+
 
 
         
@@ -155,13 +145,11 @@ class Frame:
 
             zone = self.copy_of_image[i - distance_from_centre: i + distance_from_centre + 1]
 
-            #print(i-distance_from_centre,"   ",i+distance_from_centre+1)
 
             height_of_zone = len(zone)
-            #print("height ", height_of_zone)
+
             zone = [zone[k][j - distance_from_centre: j + distance_from_centre + 1] for k in range(len(zone))]
 
-            #print(j - distance_from_centre,"   ",j + distance_from_centre + 1)
 
             width_of_zone = len(zone[0])
             num_of_pixels_in_zone = height_of_zone * width_of_zone
@@ -182,10 +170,9 @@ class Frame:
 
 def main():
     start = time.time()
-    image = cv2.imread("14.jpg")
+    image = cv2.imread(input("Type name of image: "))
     image_grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # image = cv2.resize(image, (size))
-    # image = [[random.randint(0,255) for i in range(200)] for j in range(120)]
+
 
     fr = Frame(image_grey)
     for i in range(len(fr.copy_of_image)):
